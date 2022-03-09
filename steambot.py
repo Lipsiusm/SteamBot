@@ -14,14 +14,16 @@ test = 'https://en.wikipedia.org/wiki/Python_(programming_language)'
 #<span class="huge-countdown" id="js-sale-countdown" data-target="1647277200000">05 : 12 : 53 : 46</span>
 #figure out how to grab specific headers
 def main():
-	 current_top_sellers()
+	current_top_sellers()
 
 def current_top_sellers():
 	feed = requests.get(store_url)
-	soup = bs(feed.text)
-	soup = soup.prettify()
-	print(soup)
-	#need 
+	soup = bs(feed.text, 'html.parser')
+
+	
+	for i in soup.find_all(class_='tab_item_name'):
+		print (i)
+
 	#class tab_item_name
 	#class discount_pct
 	#class discount_original_price
