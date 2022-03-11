@@ -1,9 +1,6 @@
 import time
 import requests
-import json
-import sys
-import feedparser
-#import game
+#import game class 
 from bs4 import BeautifulSoup as bs
 
 #nabbin up them current specials
@@ -35,7 +32,7 @@ def current_top_sellers():
 		#print (i)
 
 	#trying to grab all the information in one loop
-	for i in soup.find_all(class_=['tab_item_name', 'discount_pct', 'discount_final_price', 'discount_pct']):
+	for i in soup.find_all(class_=['tab_item_name', 'discount_pct', 'discount_final_price']):
 		print (i)
 	#this is where im going to start storing game objects
 	#class tab_item_name
