@@ -26,14 +26,18 @@ def current_top_sellers():
 
 	#some tags reoccur on the highlighted portions of the page
 	#so i have to cast to a set to not print duplicate items
-	for i in soup.find_all(class_='tab_item_name'):
-		set_of_games.add(i)
+	#for i in soup.find_all(class_='tab_item_name'):
+		#set_of_games.add(i)
 
 	# for game in set_of_games:
 	# 	print (game)
-	for i in soup.find_all(class_='discount_price'):
-		print (i)
+	#for i in soup.find_all(class_='discount_price'):
+		#print (i)
 
+	#trying to grab all the information in one loop
+	for i in soup.find_all(class_=['tab_item_name', 'discount_pct', 'discount_final_price', 'discount_pct']):
+		print (i)
+	#this is where im going to start storing game objects
 	#class tab_item_name
 	#class discount_pct
 	#class discount_original_price
