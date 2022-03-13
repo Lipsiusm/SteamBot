@@ -1,6 +1,7 @@
 import time
 import requests
-#import game class 
+from dotenv import load_dotenv
+import games
 from bs4 import BeautifulSoup as bs
 
 #nabbin up them current specials
@@ -19,8 +20,8 @@ def current_top_sellers():
 	games = []
 	feed = requests.get(store_url)
 	soup = bs(feed.text, 'html.parser')
+	soup = soup.find_all('tabarea')
 	games = soup.find_all(class_=['tab_item_name', 'discount_pct', 'discount_final_price'])
-
 
 	#cut tag info off the items in the list
 	for i in range (len(games)):
