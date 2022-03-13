@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 
 #nabbin up them current specials
-store_url= 'https://store.steampowered.com/specials/#p=0&tab=TopSellers'
+store_url= 'https://store.steampowered.com/specials/#tab=TopSellers'
 
 test = 'https://en.wikipedia.org/wiki/Python_(programming_language)'
 
@@ -15,31 +15,25 @@ def main():
 	current_top_sellers()
 
 def current_top_sellers():
-	#make a set
-	set_of_games = {}
-	set_of_games = set(set_of_games)
+
+	games = []
 	feed = requests.get(store_url)
 	soup = bs(feed.text, 'html.parser')
+	games = soup.find_all(class_=['tab_item_name', 'discount_pct', 'discount_final_price'])
 
-	#some tags reoccur on the highlighted portions of the page
-	#so i have to cast to a set to not print duplicate items
-	#for i in soup.find_all(class_='tab_item_name'):
-		#set_of_games.add(i)
 
-	# for game in set_of_games:
-	# 	print (game)
-	#for i in soup.find_all(class_='discount_price'):
-		#print (i)
-
-	#trying to grab all the information in one loop
-	for i in soup.find_all(class_=['tab_item_name', 'discount_pct', 'discount_final_price']):
-		print (i)
-	#this is where im going to start storing game objects
-	#class tab_item_name
-	#class discount_pct
-	#class discount_original_price
-	#class discount_final_price
-	#anchor tag href
+	#cut tag info off the items in the list
+	for i in range (len(games)):
+		games[i] = games[i].get_text()
+		print (games[i])
+	"""
+	this is where im going to start storing game objects
+	class tab_item_name
+	class discount_pct
+	class discount_original_price
+	class discount_final_price
+	anchor tag href
+	"""
 
 #send the items from the sale to the discord webhook id
 #def post_to_disc():
