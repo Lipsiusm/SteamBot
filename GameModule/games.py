@@ -1,12 +1,12 @@
 #class represents an object on sale at the steam store
 
-class game:
+class Game:
 
-	title=''
 	discount_percent=''
 	sale_price=''
+	title=''
 
-	def __init__(self, discount_percent, sale_price, title ):
+	def __init__(self, discount_percent, sale_price, title):
 		self.discount_percent = discount_percent
 		self.sale_price = sale_price
 		self.title = title
