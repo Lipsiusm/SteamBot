@@ -17,5 +17,5 @@ class Game:
 	def get_discount(self):
 		return self.discount_percent
 
-	def get_price(self):
+	def get_cost(self):
 		return self.sale_price

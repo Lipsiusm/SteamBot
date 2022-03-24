@@ -29,13 +29,24 @@ def current_top_sellers():
 		#print(games[i])
 
 	new_game = Game(games[0], games[1],games[2])
-	print(new_game.get_title())
+	#print(new_game.get_title())
 	
-	# while continue_looping:
-	# 	pct = games.pop(0)
-	# 	cost = games.pop(1)
-	# 	title = games.pop(2)
-	# 	new_game = Game(pct, cost, title)
+	while continue_looping:
+		pct = games.pop(0)
+		title = games.pop(1)
+		cost = games.pop(2)
+		#checking to see if title is a random untitled tag with ascii values
+		#48 -> 57 are numbers, as theres numbers in certain titles
+		#97 -> 122 is a - z
+		if ord(title[0].lower()) < 97 and ord(title[0].lower()) < 48 or ord(title[0].lower()) > 122 and ord(title[0].lower()) > 57:
+			continue_looping = False
+			break
+
+		new_game = Game(pct, cost, title)
+		games.append(new_game);
+		print('%: ' + new_game.get_discount())
+		print('cost: ' + new_game.get_cost())
+		print('title: ' + new_game.get_title())
 
 
 #send the items from the sale to the discord webhook id
