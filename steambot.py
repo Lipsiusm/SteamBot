@@ -44,9 +44,9 @@ def current_top_sellers():
 
 		new_game = Game(pct, cost, title)
 		games.append(new_game);
-		print('%: ' + new_game.get_discount())
-		print('cost: ' + new_game.get_cost())
-		print('title: ' + new_game.get_title())
+		print('Discout %: ' + new_game.get_discount())
+		print('Cost: ' + new_game.get_cost())
+		print('Title: ' + new_game.get_title())
 
 
 #send the items from the sale to the discord webhook id
