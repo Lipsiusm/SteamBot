@@ -11,11 +11,11 @@ class Game:
 		self.sale_price = sale_price
 		self.title = title
 
-	def get_title():
+	def get_title(self):
 		return self.title
 
-	def get_discount_percent():
+	def get_discount(self):
 		return self.discount_percent
 
-	def get_orig_price():
+	def get_price(self):
 		return self.sale_price

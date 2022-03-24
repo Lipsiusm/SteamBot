@@ -1,7 +1,7 @@
 import time
 import requests
 from dotenv import load_dotenv
-from GameModule import games
+from games import *
 from bs4 import BeautifulSoup as bs
 
 #nabbin up them current specials
@@ -21,26 +21,22 @@ def current_top_sellers():
 	feed = requests.get(store_url)
 	soup = bs(feed.text, 'html.parser')
 	games = soup.find_all(class_=['tab_item_name', 'discount_pct', 'discount_final_price'])
+	continue_looping = True
 
 	#cut tag info off the items in the list
 	for i in range (len(games)):
 		games[i] = games[i].get_text()
+		#print(games[i])
 
-	new_game = Game (games[1], games[2],games[3])
+	new_game = Game(games[0], games[1],games[2])
 	print(new_game.get_title())
-	# for i in range (len(games)):
-	# 	pct = games.pop(i)
-	# 	cost = games.pop(i+1)
-	# 	title = games.pop(i+2)
+	
+	# while continue_looping:
+	# 	pct = games.pop(0)
+	# 	cost = games.pop(1)
+	# 	title = games.pop(2)
 	# 	new_game = Game(pct, cost, title)
-	"""
-	this is where im going to start storing game objects
-	class tab_item_name
-	class discount_pct
-	class discount_original_price
-	class discount_final_price
-	anchor tag href
-	"""
+
 
 #send the items from the sale to the discord webhook id
 #def post_to_disc():
