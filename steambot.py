@@ -1,6 +1,7 @@
-import time
 import requests
-from dotenv import load_dotenv
+import os
+import json
+import discord
 from games import *
 from bs4 import BeautifulSoup as bs
 
@@ -15,7 +16,33 @@ test = 'https://en.wikipedia.org/wiki/Python_(programming_language)'
 def main():
     sales_to_post=current_top_sellers()
     run_bot(sales_to_post)
-    
+
+def run_bot(data):
+    # client = discord.Client()
+    token = ''
+    webhook = ''
+
+    data = {
+        "content" : "Hello",
+
+        "username" : "SteamBot"
+    }
+
+    result = requests.post(webhook, headers={'Authorization': ''}, json = data)
+
+    try:
+        result.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        print(err)
+    else:
+        print("Payload delivered successfully, code {}.".format(result.status_code))
+
+    # webhook = discord.Webhook.partial(
+    #     STATUS_WEBHOOK_ID,
+    #     STATUS_WEBHOOK_TOKEN,
+    #     adapter=discord.RequestsWebhookAdapter(),
+    # )
+
 def current_top_sellers():
 
     return_games = []
@@ -44,8 +71,6 @@ def current_top_sellers():
         new_game = Game(pct, cost, title)
         if new_game not in return_games:
             return_games.append(new_game)
-        else:
-            print(f'Duplicate Title: {new_game.title}')
 
     return return_games
 
