@@ -19,3 +19,9 @@ class Game:
 
 	def get_cost(self):
 		return self.sale_price
+
+	def __eq__(self, other_game):
+		if self.title == other_game.get_title():
+			return True
+		else:
+			return False
