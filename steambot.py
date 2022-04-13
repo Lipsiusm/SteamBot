@@ -18,17 +18,26 @@ def main():
 
 def run_bot(data):
     
-    webhook = ''
+    DIG_webhook=''
+    SMP_webhook=''
     sales = ''
 
-    # for game in data:
-    #     sales = sales + f'{game}\n'
-
+    for game in data:
+        sales = sales + f'{game}\n'
+        
+    #embed the sales for a good looking output
     data_to_send = {
-        'content': json.dumps(data, indent = 2),
-        'username' : ''
+        "username": "SteamBot",
+        "embeds": [
+            {
+                "title": "Steam Sales",
+                "description": sales,
+                "color": "16704809",
+            }
+        ],
     }
-    result = requests.post(webhook, data = data_to_send)
+
+    result = requests.post(DIG_webhook, data = json.dumps(data_to_send), headers={'Content-Type':'application/json'})
 
 
 def current_top_sellers():
