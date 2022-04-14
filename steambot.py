@@ -2,24 +2,39 @@ import requests
 import os
 import json
 import discord
+import math
 from games import *
 from bs4 import BeautifulSoup as bs
-
-#nabbin up them current specials
-store_url= 'https://store.steampowered.com/specials/#tab=TopSellers'
 
 #this is the class i need to grab for the ETA of next sale
 #<span class="huge-countdown" id="js-sale-countdown" data-target="1647277200000">05 : 12 : 53 : 46</span>
 #figure out how to grab specific headers
 
 def main():
-    sales_to_post=current_top_sellers()
-    run_bot(sales_to_post)
+    #sales_to_post=current_top_sellers()
+    #run_bot(sales_to_post)
+    convert_to_usd()
+
+def convert_to_usd(cdn_cost):
+
+    #grab the current CAD to USD conversion rate
+    url = 'https://www.google.com/finance/quote/CAD-USD'
+    feed = requests.get(url)
+    soup = bs(feed.text, 'html.parser')
+    grab_rate = soup.find_all(class_='YMlKec fxKbKc')
+    
+    #convert the value and return it
+    conversion_rate = grab_rate[0].get_text()
+    conversion_rate = float(conversion_rate)
+    usd_amount = conversion_rate * cdn_cost
+    usd_amount = round(conversion_rate, 2)
+    return usd_amount
 
 def run_bot(data):
     
-    DIG_webhook=''
-    SMP_webhook=''
+
+    # DIG_webhook=''
+    # SMP_webhook=''
     sales = ''
 
     for game in data:
@@ -42,6 +57,8 @@ def run_bot(data):
 
 def current_top_sellers():
 
+    #nabbin up them current specials
+    store_url= 'https://store.steampowered.com/specials/#tab=TopSellers'
     return_games = []
     return_list = []
     feed = requests.get(store_url)
@@ -56,6 +73,8 @@ def current_top_sellers():
     while continue_looping:
         pct = games.pop(0)
         cost = games.pop(0)
+        #stripping the CDN dollar characters and white space to save character spaces
+        cost = cost.strip('CDN')
         title = games.pop(0)
 
         #checking to see if title is a random untitled tag with ascii values
