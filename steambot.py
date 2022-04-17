@@ -21,7 +21,7 @@ def run_bot(cdn_data, usd_data):
 
     DIG_webhook = webhooks['DIG_webhook']
     SMP_webhook = webhooks['SMP_webhook']
-    print(usd_data)
+    
     cdn_sales = ''
     usd_sales = ''
 
