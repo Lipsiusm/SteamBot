@@ -1,2 +1,6 @@
 # SteamBot
-A script that posts steam sales to my own discord, as well as my other warcraft discord. Offers USD and CDN prices.
+A script that posts steam sales to discord. Offers USD and CDN prices.
+
+Built with:
+	Python 3.8.10
+	BeautifulSoup 4.10.0

@@ -1,18 +1,12 @@
 import requests
 import json
-import math
 from games import *
 from bs4 import BeautifulSoup as bs
-
-#this is the class i need to grab for the ETA of next sale
-#<span class="huge-countdown" id="js-sale-countdown" data-target="1647277200000">05 : 12 : 53 : 46</span>
-#figure out how to grab specific headers
 
 def main():
     cdn_data = cdn_top_sellers()
     usd_data = usd_top_sellers()
     run_bot(cdn_data, usd_data)
-
 
 def run_bot(cdn_data, usd_data):
     
@@ -116,7 +110,7 @@ def cdn_top_sellers():
         pct = games.pop(0)
         cost = games.pop(0)
 
-        #stripping the CDN dollar characters and white space to save character spaces
+        #stripping the CDN dollar characters to save character spaces
         cost = cost.strip('CDN')
         title = games.pop(0)
 
