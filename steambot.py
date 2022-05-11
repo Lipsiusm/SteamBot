@@ -13,8 +13,8 @@ def run_bot(cdn_data, usd_data):
     with open("../bot_info.json", "r") as webhook_file:
         webhooks  = json.load(webhook_file)
 
-    DIG_webhook = webhooks['DIG_webhook']
-    SMP_webhook = webhooks['SMP_webhook']
+    DIG_webhook = webhooks['DIG_WEBHOOK']
+    SMP_webhook = webhooks['SMP_WEBHOOK']
     
     cdn_sales = ''
     usd_sales = ''
@@ -54,7 +54,7 @@ def run_bot(cdn_data, usd_data):
 def usd_top_sellers():
 
     proxy = {
-    'https' : '20.81.62.32:3128'
+    'https://' : '20.81.62.32:3128'
     }
 
     #nabbin up them current specials
