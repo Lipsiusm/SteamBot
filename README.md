@@ -1,2 +1,2 @@
 # SteamBot
-A script that posts steam sales to discord. Offers USD and CDN prices.
+Asynchronous Discord Bot that on command posts top selling steam sales to my discord
